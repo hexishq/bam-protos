@@ -50,6 +50,15 @@ message LeaderState {
   uint32 slot_cu_budget_remaining = 3;
 }
 
+// Validator-to-node tee of a Jito bundle (FireBAM SchedulerMessageV0 field 6).
+// Packets in execution order, adapter-local id, Jito commission for the crank.
+message ForwardedBundle {
+  repeated Packet packets = 1;
+  uint64 bundle_id = 2;
+  uint32 commission = 3;
+  string commission_pubkey = 4;
+}
+
 // An 'atomic transaction batch' is a bundle of transactions that must be processed together
 message AtomicTxnBatch {
   uint32 seq_id = 1; // unique for a single leader rotation
